@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'RENT A CAR',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -22,9 +23,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'RENT A CAR'),
     );
   }
 }
@@ -48,6 +49,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final urlImages = [
+    'https://toyota.cl/media/images/VISTA_S_FRONTAL_-_SEG_HEV_PLATA_ivwZ6Yt.max-500x240.png',
+    'https://toyota.cl/media/images/LE_AZUL.max-730x330.png',
+    'https://es.nissanusa.com/content/dam/Nissan/us/vehicles/altima/2021/overview/nissan-altima-mid-size-sedan.png',
+    'https://www.sernac.cl/portal/619/articles-62268_imagen_01.png',
+  ];
+
   int _counter = 0;
 
   void _incrementCounter() {
@@ -74,33 +82,66 @@ class _MyHomePageState extends State<MyHomePage> {
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+        actions: [
+          Icon(Icons.search),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Icon(Icons.person),
+          ),
+          Icon(Icons.more_vert),
+        ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      body: SingleChildScrollView(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+          children: [ 
+             Text(
+                    'Elige el auto que quieres:',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+            CarouselSlider.builder(
+                  options: CarouselOptions(height: 300,
+                  enlargeCenterPage: true,
+                  enlargeStrategy: CenterPageEnlargeStrategy.height),
+                  itemCount: urlImages.length,
+                  itemBuilder: (context, index, realIndex) {
+                    final urlImage = urlImages[index];
+
+                    return buildImage(urlImage, index);
+                  },
+                ),
+            Center(
+              // Center is a layout widget. It takes a single child and positions it
+              // in the middle of the parent.
+
+              child: Column(
+                // Column is also a layout widget. It takes a list of children and
+                // arranges them vertically. By default, it sizes itself to fit its
+                // children horizontally, and tries to be as tall as its parent.
+                //
+                // Invoke "debug painting" (press "p" in the console, choose the
+                // "Toggle Debug Paint" action from the Flutter Inspector in Android
+                // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
+                // to see the wireframe for each widget.
+                //
+                // Column has various properties to control how it sizes itself and
+                // how it positions its children. Here we use mainAxisAlignment to
+                // center the children vertically; the main axis here is the vertical
+                // axis because Columns are vertical (the cross axis would be
+                // horizontal).
+                
+
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text(
+                    'You have pushed the button this many times:',
+                  ),
+                  Text(
+                    '$_counter',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -112,4 +153,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
+
+  Widget buildImage(String urlImage, int index) => Container(
+        margin: EdgeInsets.symmetric(horizontal: 6),
+        color: Colors.grey,
+        child: Image.network(
+          urlImage,
+          fit: BoxFit.cover,
+        ),
+      );
 }
