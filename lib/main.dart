@@ -54,21 +54,10 @@ class _MyHomePageState extends State<MyHomePage> {
   final urlImages = [
     'https://1000marcas.net/wp-content/uploads/2020/01/logo-Nissan-1.png',
     'https://assets.stickpng.com/images/580b57fcd9996e24bc43c4a3.png',
-    'http://grupooptimotor.com/wp-content/uploads/2021/06/KIA_logo3.png',
+    'https://www.diariomotor.com/imagenes/picscache/750x/kia-nuevo-logo-0121-01_750x.jpg',
   ];
 
   int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,72 +84,56 @@ class _MyHomePageState extends State<MyHomePage> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 12.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CarouselSlider.builder(
               options: CarouselOptions(
-                  height: 250,
-                  enlargeCenterPage: true,
-                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  onPageChanged: (index, reaseon) =>
-                  setState(() => activeIndex = index),
-                  ),
+                height: 200,
+                enlargeCenterPage: true,
+                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                onPageChanged: (index, reaseon) =>
+                    setState(() => activeIndex = index),
+              ),
               itemCount: urlImages.length,
-              
               itemBuilder: (context, index, realIndex) {
                 final urlImage = urlImages[index];
 
                 return buildImage(urlImage, index);
               },
             ),
-            const SizedBox(height: 32,),
+            const SizedBox(
+              height: 32,
+            ),
             buildIndicator(),
-            Padding( 
+            Padding(
               padding: EdgeInsets.only(top: 12.0),
               child: Text(
-              'Elige tu marca de auto',
-              style: Theme.of(context).textTheme.headline5,
-            ),
-            ),
-            Center(
-              // Center is a layout widget. It takes a single child and positions it
-              // in the middle of the parent.
-
-              child: Column(
-                // Column is also a layout widget. It takes a list of children and
-                // arranges them vertically. By default, it sizes itself to fit its
-                // children horizontally, and tries to be as tall as its parent.
-                //
-                // Invoke "debug painting" (press "p" in the console, choose the
-                // "Toggle Debug Paint" action from the Flutter Inspector in Android
-                // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-                // to see the wireframe for each widget.
-                //
-                // Column has various properties to control how it sizes itself and
-                // how it positions its children. Here we use mainAxisAlignment to
-                // center the children vertically; the main axis here is the vertical
-                // axis because Columns are vertical (the cross axis would be
-                // horizontal).
-
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  const Text(
-                    'You have pushed the button this many times:',
-                  ),
-                  Text(
-                    '$_counter',
-                    style: Theme.of(context).textTheme.headline4,
-                  ),
-                ],
+                'Elige tu marca de auto',
+                style: Theme.of(context).textTheme.headline5,
               ),
             ),
-            const Text('You have pushed the button this many times:'),
+            Padding(
+                padding: EdgeInsets.only(top: 19.0),
+                child: Image.network(
+                  'https://res.cloudinary.com/wpchile/image/upload//c_crop,f_auto,h_357,q_auto:good,w_935,x_362,y_73/c_scale,w_600/kovacsecrm/bms_producto/122/modelos_rav4hfinal.png',
+                  width: 350,
+                )),
+            const Align(
+              alignment: Alignment(-0.6,0),
+              
+              child: Padding(
+                padding: EdgeInsets.only(top: 19.0),
+                child: Text(
+                  'Autos más elegidos',
+                  style: TextStyle(fontSize: 22),
+                ),
+              ),
+            )
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
+        onPressed: null,
         child: const Icon(Icons.star_outlined),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
@@ -175,7 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
 
-      Widget buildIndicator() => AnimatedSmoothIndicator(
+  Widget buildIndicator() => AnimatedSmoothIndicator(
         activeIndex: activeIndex,
         count: urlImages.length,
       );
