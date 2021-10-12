@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -49,11 +50,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int activeIndex = 0;
   final urlImages = [
-    'https://toyota.cl/media/images/VISTA_S_FRONTAL_-_SEG_HEV_PLATA_ivwZ6Yt.max-500x240.png',
-    'https://toyota.cl/media/images/LE_AZUL.max-730x330.png',
-    'https://es.nissanusa.com/content/dam/Nissan/us/vehicles/altima/2021/overview/nissan-altima-mid-size-sedan.png',
-    'https://www.sernac.cl/portal/619/articles-62268_imagen_01.png',
+    'https://1000marcas.net/wp-content/uploads/2020/01/logo-Nissan-1.png',
+    'https://assets.stickpng.com/images/580b57fcd9996e24bc43c4a3.png',
+    'http://grupooptimotor.com/wp-content/uploads/2021/06/KIA_logo3.png',
   ];
 
   int _counter = 0;
@@ -92,24 +93,35 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.only(top: 12.0),
         child: Column(
-          children: [ 
-             Text(
-                    'Elige el auto que quieres:',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
             CarouselSlider.builder(
-                  options: CarouselOptions(height: 300,
+              options: CarouselOptions(
+                  height: 250,
                   enlargeCenterPage: true,
-                  enlargeStrategy: CenterPageEnlargeStrategy.height),
-                  itemCount: urlImages.length,
-                  itemBuilder: (context, index, realIndex) {
-                    final urlImage = urlImages[index];
+                  enlargeStrategy: CenterPageEnlargeStrategy.height,
+                  onPageChanged: (index, reaseon) =>
+                  setState(() => activeIndex = index),
+                  ),
+              itemCount: urlImages.length,
+              
+              itemBuilder: (context, index, realIndex) {
+                final urlImage = urlImages[index];
 
-                    return buildImage(urlImage, index);
-                  },
-                ),
+                return buildImage(urlImage, index);
+              },
+            ),
+            const SizedBox(height: 32,),
+            buildIndicator(),
+            Padding( 
+              padding: EdgeInsets.only(top: 12.0),
+              child: Text(
+              'Elige tu marca de auto',
+              style: Theme.of(context).textTheme.headline5,
+            ),
+            ),
             Center(
               // Center is a layout widget. It takes a single child and positions it
               // in the middle of the parent.
@@ -129,7 +141,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 // center the children vertically; the main axis here is the vertical
                 // axis because Columns are vertical (the cross axis would be
                 // horizontal).
-                
 
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -143,23 +154,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
+            const Text('You have pushed the button this many times:'),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.star_outlined),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
   Widget buildImage(String urlImage, int index) => Container(
         margin: EdgeInsets.symmetric(horizontal: 6),
-        color: Colors.grey,
+        color: Colors.transparent,
         child: Image.network(
           urlImage,
           fit: BoxFit.cover,
         ),
+      );
+
+      Widget buildIndicator() => AnimatedSmoothIndicator(
+        activeIndex: activeIndex,
+        count: urlImages.length,
       );
 }
