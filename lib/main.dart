@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'dart:math';
 
 void main() {
   runApp(const MyApp());
@@ -119,8 +120,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: 350,
                 )),
             const Align(
-              alignment: Alignment(-0.6,0),
-              
+              alignment: Alignment(-0.6, 0),
               child: Padding(
                 padding: EdgeInsets.only(top: 19.0),
                 child: Text(
@@ -128,7 +128,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   style: TextStyle(fontSize: 22),
                 ),
               ),
-            )
+            ),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      buildCard(),
+                      buildCard(),
+                      buildCard(),
+                      buildCard(),
+                      buildCard(),
+                      buildCard(),
+                      buildCard(),
+                    ],
+                  )),
+            ),
           ],
         ),
       ),
@@ -152,4 +168,51 @@ class _MyHomePageState extends State<MyHomePage> {
         activeIndex: activeIndex,
         count: urlImages.length,
       );
+}
+
+Card buildCard() {
+  var ran = Random();
+  var heading = '\$${(ran.nextInt(20) + 1).toString()}0.000 por mes';
+  var subheading =
+      '${(ran.nextInt(60) + 30).toString()} HP, ${(ran.nextInt(40) + 19).toString()} KM/L ciudad, ${(ran.nextInt(60) + 30).toString()}KM/L carretera';
+  var cardImage = NetworkImage(
+      'https://source.unsplash.com/user/alvaro753/likes/800x600?vehicle&' +
+          ran.nextInt(50).toString());
+  var supportingText =
+      'Tenemos promociones y descuentos durante todo el año, para que puedas disfrutar de nuestro servicio.';
+  return Card(
+      elevation: 4.0,
+      child: Column(
+        children: [
+          ListTile(
+            title: Text(heading),
+            subtitle: Text(subheading),
+            trailing: Icon(Icons.favorite_outline),
+          ),
+          Container(
+            height: 200.0,
+            child: Ink.image(
+              image: cardImage,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.all(16.0),
+            alignment: Alignment.centerLeft,
+            child: Text(supportingText),
+          ),
+          ButtonBar(
+            children: [
+              TextButton(
+                child: const Text('CONTACTANOS'),
+                onPressed: () {/* ... */},
+              ),
+              TextButton(
+                child: const Text('SABER MÁS'),
+                onPressed: () {/* ... */},
+              )
+            ],
+          )
+        ],
+      ));
 }
