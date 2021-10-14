@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'RENT A CAR',
       theme: ThemeData(
         // This is the theme of your application.
@@ -51,14 +52,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int _paginActual = 0;
   int activeIndex = 0;
   final urlImages = [
     'https://1000marcas.net/wp-content/uploads/2020/01/logo-Nissan-1.png',
     'https://assets.stickpng.com/images/580b57fcd9996e24bc43c4a3.png',
     'https://www.diariomotor.com/imagenes/picscache/750x/kia-nuevo-logo-0121-01_750x.jpg',
   ];
-
-  int _counter = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +74,10 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
         actions: [
-          Icon(Icons.search),
+          Icon(Icons.person),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Icon(Icons.person),
+            child: Icon(Icons.settings),
           ),
           Icon(Icons.more_vert),
         ],
@@ -141,17 +141,39 @@ class _MyHomePageState extends State<MyHomePage> {
                       buildCard(),
                       buildCard(),
                       buildCard(),
-                      buildCard(),
                     ],
                   )),
             ),
           ],
         ),
       ),
+      // ignore: prefer_const_constructors
       floatingActionButton: FloatingActionButton(
         onPressed: null,
         child: const Icon(Icons.star_outlined),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            _paginActual = index;
+          });
+        },
+        currentIndex: _paginActual,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              backgroundColor: Colors.red),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite),
+              label: 'Favoritos',
+              backgroundColor: Colors.red),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              label: 'Buscar',
+              backgroundColor: Colors.red),
+        ],
+      ),
     );
   }
 
@@ -216,3 +238,21 @@ Card buildCard() {
         ],
       ));
 }
+
+Widget botonesfooter = Container(
+  padding: const EdgeInsets.only(top: 12.0),
+  child: BottomNavigationBar(
+    items: const <BottomNavigationBarItem>[
+      BottomNavigationBarItem(
+          icon: Icon(Icons.home), label: 'Home', backgroundColor: Colors.red),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.favorite),
+          label: 'Favoritos',
+          backgroundColor: Colors.red),
+      BottomNavigationBarItem(
+          icon: Icon(Icons.search),
+          label: 'Buscar',
+          backgroundColor: Colors.red),
+    ],
+  ),
+);
