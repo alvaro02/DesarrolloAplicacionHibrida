@@ -159,19 +159,23 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
         currentIndex: _paginActual,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.red,
+        selectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',
-              backgroundColor: Colors.red),
+              
+              ),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite),
               label: 'Favoritos',
-              backgroundColor: Colors.red),
+              ),
           BottomNavigationBarItem(
               icon: Icon(Icons.search),
               label: 'Buscar',
-              backgroundColor: Colors.red),
+              ),
         ],
       ),
     );
@@ -238,21 +242,3 @@ Card buildCard() {
         ],
       ));
 }
-
-Widget botonesfooter = Container(
-  padding: const EdgeInsets.only(top: 12.0),
-  child: BottomNavigationBar(
-    items: const <BottomNavigationBarItem>[
-      BottomNavigationBarItem(
-          icon: Icon(Icons.home), label: 'Home', backgroundColor: Colors.red),
-      BottomNavigationBarItem(
-          icon: Icon(Icons.favorite),
-          label: 'Favoritos',
-          backgroundColor: Colors.red),
-      BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Buscar',
-          backgroundColor: Colors.red),
-    ],
-  ),
-);
