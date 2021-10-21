@@ -85,68 +85,65 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         padding: const EdgeInsets.only(top: 12.0),
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              CarouselSlider.builder(
-                options: CarouselOptions(
-                  height: 200,
-                  enlargeCenterPage: true,
-                  enlargeStrategy: CenterPageEnlargeStrategy.height,
-                  onPageChanged: (index, reaseon) =>
-                      setState(() => activeIndex = index),
-                ),
-                itemCount: urlImages.length,
-                itemBuilder: (context, index, realIndex) {
-                  final urlImage = urlImages[index];
+          children: [
+            CarouselSlider.builder(
+              options: CarouselOptions(
+                height: 200,
+                enlargeCenterPage: true,
+                enlargeStrategy: CenterPageEnlargeStrategy.height,
+                onPageChanged: (index, reaseon) =>
+                    setState(() => activeIndex = index),
+              ),
+              itemCount: urlImages.length,
+              itemBuilder: (context, index, realIndex) {
+                final urlImage = urlImages[index];
 
-                  return buildImage(urlImage, index);
-                },
-              ),
-              const SizedBox(height: 32),
-              buildIndicator(),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 12.0),
-            child: Text(
-              'Elige tu marca de auto',
-              style: Theme.of(context).textTheme.headline5,
+                return buildImage(urlImage, index);
+              },
             ),
-          ),
-          Padding(
-              padding: EdgeInsets.only(top: 19.0),
-              child: Image.network(
-                'https://res.cloudinary.com/wpchile/image/upload//c_crop,f_auto,h_357,q_auto:good,w_935,x_362,y_73/c_scale,w_600/kovacsecrm/bms_producto/122/modelos_rav4hfinal.png',
-                width: 350,
-              )),
-          const Align(
-            alignment: Alignment(-0.6, 0),
-            child: Padding(
-              padding: EdgeInsets.only(top: 19.0),
+            const SizedBox(
+              height: 32,
+            ),
+            buildIndicator(),
+            Padding(
+              padding: EdgeInsets.only(top: 12.0),
               child: Text(
-                'Autos más elegidos',
-                style: TextStyle(fontSize: 22),
+                'Elige tu marca de auto',
+                style: Theme.of(context).textTheme.headline5,
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    buildCard(),
-                    buildCard(),
-                    buildCard(),
-                    buildCard(),
-                    buildCard(),
-                    buildCard(),
-                  ],
+            Padding(
+                padding: EdgeInsets.only(top: 19.0),
+                child: Image.network(
+                  'https://res.cloudinary.com/wpchile/image/upload//c_crop,f_auto,h_357,q_auto:good,w_935,x_362,y_73/c_scale,w_600/kovacsecrm/bms_producto/122/modelos_rav4hfinal.png',
+                  width: 350,
                 )),
-          ),
-        ],
+            const Align(
+              alignment: Alignment(-0.6, 0),
+              child: Padding(
+                padding: EdgeInsets.only(top: 19.0),
+                child: Text(
+                  'Autos más elegidos',
+                  style: TextStyle(fontSize: 22),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                    children: [
+                      buildCard(),
+                      buildCard(),
+                      buildCard(),
+                      buildCard(),
+                      buildCard(),
+                      buildCard(),
+                    ],
+                  )),
+            ),
+          ],
       ),
       // ignore: prefer_const_constructors
       floatingActionButton: FloatingActionButton(
@@ -165,17 +162,18 @@ class _MyHomePageState extends State<MyHomePage> {
         selectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
+              icon: Icon(Icons.home),
+              label: 'Home',
+              
+              ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favoritos',
-          ),
+              icon: Icon(Icons.favorite),
+              label: 'Favoritos',
+              ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Buscar',
-          ),
+              icon: Icon(Icons.search),
+              label: 'Buscar',
+              ),
         ],
       ),
     );
