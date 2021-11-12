@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'dart:math';
-import 'PantallaInicio.dart';
+import 'pantallaInicio.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,4 +1,4 @@
-import 'package:dah2021_guajardo/PantallaInicio.dart';
+import 'package:dah2021_guajardo/pantallaInicio.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(Inicio());
