@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:dah2021_guajardo/auto.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'dart:math';
@@ -104,12 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                    buildCard(),
-                    buildCard(),
-                    buildCard(),
-                    buildCard(),
-                    buildCard(),
-                    buildCard(),
+                   buildCard(context),
+                   buildCard(context),
+                   buildCard(context),
                   ],
                 )),
           ),
@@ -163,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
       );
 }
 
-Card buildCard() {
+Card buildCard(BuildContext context) {
   var ran = Random();
   var heading = '\$${(ran.nextInt(20) + 1).toString()}0.000 por mes';
   var subheading =
@@ -202,10 +200,13 @@ Card buildCard() {
               ),
               TextButton(
                 child: const Text('SABER MÁS'),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => autoZoom()));
+                },
               )
             ],
-          )
+          ),
         ],
       ));
 }
