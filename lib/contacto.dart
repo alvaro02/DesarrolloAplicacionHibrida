@@ -80,7 +80,7 @@ class _formularioContactoState extends State<formularioContacto> {
                 decoration:
                     InputDecoration(labelText: "Ingrese su numero de telefono"),
                 validator: (value) {
-                  if (value!.isEmpty ) {
+                  if (value!.isEmpty) {
                     return "Por favor ingrese numero correcto";
                   } else {
                     return null;
@@ -100,19 +100,24 @@ class _formularioContactoState extends State<formularioContacto> {
                         color: Color(0XFFEF5350),
                       )),
                   NeumorphicButton(
-                    margin: EdgeInsets.only(top: 12),
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        final snackBar =
-                            SnackBar(content: Text('Enviando Formulario'));
-                        _scaffoldKey.currentState!.showSnackBar(snackBar);
-                      }
-                    },
-                    style: NeumorphicStyle(
-                      shape: NeumorphicShape.flat,
-                      boxShape: NeumorphicBoxShape.circle(),
-                    ),
-                  )
+                      margin: EdgeInsets.only(top: 12),
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          final snackBar =
+                              SnackBar(content: Text('Enviando Formulario'));
+                          _scaffoldKey.currentState!.showSnackBar(snackBar);
+                        }
+                      },
+                      style: NeumorphicStyle(
+                          lightSource: LightSource.topLeft,
+                          shape: NeumorphicShape.flat,
+                          color: Colors.black,
+                          boxShape: NeumorphicBoxShape.circle()),
+                      padding: const EdgeInsets.all(12.0),
+                      child: Icon(
+                        Icons.chevron_right,
+                        color: Colors.white,
+                      )),
                 ],
               )
             ],
