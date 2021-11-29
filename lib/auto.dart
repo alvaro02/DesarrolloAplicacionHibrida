@@ -7,7 +7,7 @@ class autoZoom extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('auto zoom'),
+        title: Text('Descripción del Automovil'),
       ),
     );
   }

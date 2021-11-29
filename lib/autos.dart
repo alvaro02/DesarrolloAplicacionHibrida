@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dah2021_guajardo/auto.dart';
+import 'package:dah2021_guajardo/contacto.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'dart:math';
@@ -105,9 +106,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 scrollDirection: Axis.vertical,
                 child: Column(
                   children: [
-                   buildCard(context),
-                   buildCard(context),
-                   buildCard(context),
+                    buildCard(context),
+                    buildCard(context),
+                    buildCard(context),
                   ],
                 )),
           ),
@@ -196,7 +197,12 @@ Card buildCard(BuildContext context) {
             children: [
               TextButton(
                 child: const Text('CONTACTANOS'),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => formularioContacto()));
+                },
               ),
               TextButton(
                 child: const Text('SABER MÁS'),
