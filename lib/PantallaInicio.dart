@@ -1,4 +1,5 @@
 import 'package:dah2021_guajardo/autos.dart';
+import 'package:dah2021_guajardo/btnSelector.dart';
 import 'package:flutter/material.dart';
 
 class PantallaInicio extends StatefulWidget {
@@ -41,7 +42,7 @@ class _PantallaInicioState extends State<PantallaInicio> {
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Autos()));
+                        MaterialPageRoute(builder: (context) => selectorP()));
                   },
                   child: Icon(
                     Icons.chevron_right,

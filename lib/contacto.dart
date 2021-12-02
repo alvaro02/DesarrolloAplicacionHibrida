@@ -19,6 +19,7 @@ class _formularioContactoState extends State<formularioContacto> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text('Formulario de Contactato'),
+        backgroundColor: Colors.red,
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 40, right: 40),

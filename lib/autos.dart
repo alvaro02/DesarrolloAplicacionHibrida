@@ -16,20 +16,20 @@ class Autos extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: const MyHomePage(title: 'RENT A CAR'),
+      home: const autosInicio(title: 'RENT A CAR'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+class autosInicio extends StatefulWidget {
+  const autosInicio({Key? key, required this.title}) : super(key: key);
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<autosInicio> createState() => _autosInicioState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _autosInicioState extends State<autosInicio> {
   int _paginActual = 0;
   int activeIndex = 0;
   final urlImages = [
@@ -114,12 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      // ignore: prefer_const_constructors
-      floatingActionButton: FloatingActionButton(
-        onPressed: null,
-        child: const Icon(Icons.star_outlined),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
+      /* bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
           setState(() {
             _paginActual = index;
@@ -135,15 +130,11 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favoritos',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'Buscar',
+            icon: Icon(Icons.email),
+            label: 'correo',
           ),
         ],
-      ),
+      ), */
     );
   }
 
