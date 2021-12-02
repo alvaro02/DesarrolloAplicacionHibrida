@@ -1,3 +1,4 @@
+import 'package:dah2021_guajardo/contacto.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 import 'package:carousel_slider/carousel_slider.dart';
@@ -91,33 +92,33 @@ class autoZoom extends StatefulWidget {
   _autoZoomState createState() => _autoZoomState();
 }
 
-class _autoZoomState extends State<autoZoom> 
-  with SingleTickerProviderStateMixin {
+class _autoZoomState extends State<autoZoom>
+    with SingleTickerProviderStateMixin {
   late TransformationController controller;
   late AnimationController animationController;
   Animation<Matrix4>? animation;
 
-final double minscale = 1;
-final double maxscale = 4;
+  final double minscale = 1;
+  final double maxscale = 4;
 
-@override
-void initState() {
-  super.initState();
-  
-  controller= TransformationController();
-  animationController = AnimationController(
-    vsync: this,
-    duration: Duration(milliseconds: 200),
-  )..addListener(() => controller.value= animation!.value);
-}
+  @override
+  void initState() {
+    super.initState();
 
-@override
-void dispose(){
-  controller.dispose();
-  animationController.dispose();
+    controller = TransformationController();
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 200),
+    )..addListener(() => controller.value = animation!.value);
+  }
 
-  super.dispose();
-}
+  @override
+  void dispose() {
+    controller.dispose();
+    animationController.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,35 +131,98 @@ void dispose(){
           children: [
             Container(
                 child: InteractiveViewer(
-                  transformationController: controller,
-                  clipBehavior: Clip.none,
-                  panEnabled: false,
-                  minScale: minscale,
-                  maxScale: maxscale,
-                  onInteractionEnd: (details){
-                    resetAnimation();
-                  },
+              transformationController: controller,
+              clipBehavior: Clip.none,
+              panEnabled: false,
+              minScale: minscale,
+              maxScale: maxscale,
+              onInteractionEnd: (details) {
+                resetAnimation();
+              },
               child: AspectRatio(
                 aspectRatio: 1,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Image.network(
-                    'https://toyota.cl/media/images/XLE_HEV_ROJO.max-730x330.png',
+                    'https://toyota.cl/media/images/Fotos_modelos_desktop_Mesa_de_trabajo_1-10_.max-1200x425.jpg',
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-            ))
+            )),
+            Row(
+              children: [
+                Padding(
+                    padding: const EdgeInsets.all(9),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Icon(
+                          Icons.people,
+                          color: Colors.black,
+                        ),
+                        Text('5 Asientos |'),
+                        Icon(
+                          Icons.savings,
+                          color: Colors.black,
+                        ),
+                        Text('Economico |'),
+                        Icon(
+                          Icons.settings_remote,
+                          color: Colors.black,
+                        ),
+                        Text('Sistema a distancia'),
+                      ],
+                      /*  ,
+                  */
+                    ))
+              ],
+            ),
+            Padding(
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Text(
+                      "Diseño Inspirador",
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      "Toyota ALL NEW RAV4 fue rediseñada para presentar un estilo llamativo y robusto que proyecta fuerza y te inspira a desafiar cada parte de tu día. Su audaz delantera e imponente postura exhiben su lado agresivo característico de una todo terreno, mientras que sus líneas aerodinámicas y silueta elegante acentúan su sofisticación. Ya sea que te encuentres disfrutando de la ciudad o explorando el campo, ALL NEW RAV4 fortalece tus ambiciones y te abre un camino lleno de posibilidades.",
+                      style: TextStyle(fontSize: 16),
+                      textAlign: TextAlign.justify,
+                    )
+                  ],
+                )),
+            ButtonBar(
+              children: [
+                ElevatedButton(
+                  child: const Text('CONTACTANOS'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => formularioContacto()));
+                  },
+                ),
+              ],
+            )
           ],
         ));
   }
-  void resetAnimation(){
+
+  void resetAnimation() {
     animation = Matrix4Tween(
       begin: controller.value,
       end: Matrix4.identity(),
     ).animate(
-      CurvedAnimation(parent: animationController, curve: Curves.bounceIn)
-    );
+        CurvedAnimation(parent: animationController, curve: Curves.bounceIn));
     animationController.forward(from: 0);
   }
 }
