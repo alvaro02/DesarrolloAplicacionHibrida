@@ -11,7 +11,7 @@ class RentaCar extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Rent a Car Hello',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
         ),
         home: PantallaInicio()
     );

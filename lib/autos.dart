@@ -114,27 +114,6 @@ class _autosInicioState extends State<autosInicio> {
           ),
         ],
       ),
-      /* bottomNavigationBar: BottomNavigationBar(
-        onTap: (index) {
-          setState(() {
-            _paginActual = index;
-          });
-        },
-        currentIndex: _paginActual,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.red,
-        selectedItemColor: Colors.white,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.email),
-            label: 'correo',
-          ),
-        ],
-      ), */
     );
   }
 
