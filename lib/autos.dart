@@ -80,8 +80,9 @@ class _autosInicioState extends State<autosInicio> {
           Container(
             padding: EdgeInsets.only(top: 12.0),
             child: Text(
-              'Elige tu marca de auto',
+              'Elige tu auto',
               style: Theme.of(context).textTheme.headline5,
+              textAlign: TextAlign.center,
             ),
           ),
           Container(
